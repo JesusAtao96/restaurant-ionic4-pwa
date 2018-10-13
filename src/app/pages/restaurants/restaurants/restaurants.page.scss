@@ -1,0 +1,39 @@
+ion-content {
+    --background: url('../../../../assets/img/bg-auth.png');
+}
+
+ion-searchbar {
+    padding: 0px;
+}
+
+.list-empty {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ion-list {
+    background: rgba(255, 255, 255, .4);
+}
+
+ion-item {
+    --background-activated: rgba(255, 255, 255, .1);
+}
+
+ion-thumbnail {
+    --border-radius: 100%;
+    width: 30px;
+    height: 30px;
+}
+
+ion-label {
+    color: white;
+}
+
+app-button {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

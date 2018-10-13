@@ -1,0 +1,41 @@
+ion-content {
+    --background: url('../../../../assets/img/bg-auth.png');
+}
+
+ion-card {
+    --background: white;
+}
+
+ion-card-header {
+    text-align: center;
+}
+
+ion-card-content {
+    padding: 0;
+}
+
+.item-native {
+    padding: 0;
+}
+
+ion-label {
+    padding: 0;
+}
+
+.img-content {
+    height: 110px;
+    background: url('../../../../assets/img/restaurant.png') center no-repeat;
+}
+
+.comments {
+    text-align: center;
+    outline: 1px solid gainsboro;
+    margin: 20px;
+
+    .separator {
+        width: 100%;
+        height: 1px;
+        background: gainsboro;
+        margin: 15px 0px;
+    }
+}

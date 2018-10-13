@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Valoraciones</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item lines="none">
+    <ion-label>Selecciona un restaurante</ion-label>
+    <ion-select ok-text="Aceptar" cancel-text="Cancelar" [(ngModel)]="restaurantSelected" (ionChange)="onChangeRestaurant()">
+      <ion-select-option *ngFor="let restaurant of restaurants" [value]="restaurant._id">{{restaurant.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <app-empty text="No tenemos comentarios" *ngIf="comments.length == 0"></app-empty>
+  <div padding>
+    <ion-card *ngIf="comments.length !== 0">
+      <ion-card-header>
+        <ion-card-title>Opiniones</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <div class="comments" padding *ngFor="let comment of comments | reverse">
+          <ion-label>
+            <ion-skeleton-text *ngIf="!comment.comment"></ion-skeleton-text>
+            {{comment.comment}}
+          </ion-label>
+          <div class="separator"></div>
+          <ion-skeleton-text *ngIf="!comment.rating"></ion-skeleton-text>
+          <app-rating [numbers]="comment.rating"></app-rating>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Restaurant App</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="transparent-header">
+  <div class="center-view">
+    <ion-row>
+      <ion-col class="no-padding">
+        <app-button bgColor="rgba(111, 38, 74, 0.7)" title="Entrar" fontColor="#fff" (click)="login()" iconName="log-in"
+          iconSize="15px" iconColor="#fff">
+        </app-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="no-padding">
+        <app-button bgColor="rgba(200, 200, 50, 0.7)" title="Registrarme" fontColor="#fff" (click)="register()"
+          iconName="person-add" iconSize="15px" iconColor="#fff">
+        </app-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="no-padding">
+        <app-button bgColor="rgba(67, 67, 146, 0.7)" title="Facebook" fontColor="#fff" (click)="signInWithFB()" iconName="logo-facebook"
+          iconSize="15px" iconColor="#fff">
+        </app-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="no-padding">
+        <app-button bgColor="rgba(213, 67, 54, 0.7)" title="Google" fontColor="#fff" (click)="signInWithGoogle()" iconName="logo-google"
+          iconSize="15px" iconColor="#fff">
+        </app-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

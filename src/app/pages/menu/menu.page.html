@@ -1,0 +1,13 @@
+<ion-menu swipe-gesture="true">
+  <ion-content>
+    <ion-menu-toggle>
+      <ion-list>
+        <ion-item *ngFor="let page of pages" color="danger" [href]="page.href" routerDirection="root" (click)="navigate(page)">
+          <ion-icon [name]="page.icon" [slot]="slotPosition"></ion-icon>
+          <ion-label>{{page.name}}</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-menu-toggle>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet main></ion-router-outlet>

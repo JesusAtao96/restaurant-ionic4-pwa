@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Restaurantes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar placeholder="Buscar algún restaurante" animated debounce="5000" *ngIf="restaurants.length !== 0"></ion-searchbar>
+  <ion-list *ngIf="restaurants.length !== 0">
+    <ion-item *ngFor="let restaurant of restaurants | reverse" href="/main/detail-restaurant/{{restaurant._id}}" routerDirection="forward">
+      <ion-thumbnail slot="start">
+        <ion-img src="assets/img/restaurant.png"></ion-img>
+      </ion-thumbnail>
+      <ion-label>{{restaurant.name}} (Capacidad: {{restaurant.capacity}})</ion-label>
+      <ion-icon name="arrow-round-forward" slot="end"></ion-icon>
+    </ion-item>
+  </ion-list>
+
+  <div class="list-empty" *ngIf="restaurants.length == 0">
+    <app-empty text="No hay restaurantes disponibles"></app-empty>
+  </div>
+
+  <app-button bgColor="rgba(255, 38, 74, 0.6)" title="Añadir un restaurante" fontColor="#fff" iconName="add" iconSize="15px"
+      iconColor="#fff" (click)="addRestaurant()"></app-button>
+</ion-content>

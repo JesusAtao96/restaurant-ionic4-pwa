@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle del restaurante</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="deleteRestaurant()">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <ion-skeleton-text *ngIf="!restaurant.name"></ion-skeleton-text>
+        {{restaurant.name}}
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      
+      <div class="img-content"></div>
+      <div padding>
+        <ion-skeleton-text *ngIf="!ratingTotal"></ion-skeleton-text>
+        <app-rating *ngIf="ratingTotal" [numbers]="ratingTotal"></app-rating>
+
+        <ion-label>
+          <ion-skeleton-text *ngIf="!restaurant.description"></ion-skeleton-text>
+          Descripción: {{restaurant.description}}
+        </ion-label>
+
+        <ion-label>
+          <ion-skeleton-text *ngIf="!restaurant.address"></ion-skeleton-text>
+          Dirección: {{restaurant.address}}
+        </ion-label>
+
+        <ion-label>
+          <ion-skeleton-text *ngIf="!restaurant.capacity"></ion-skeleton-text>
+          Capacidad: {{restaurant.capacity}}
+        </ion-label>
+        
+        <app-button bgColor="rgba(255, 38, 74, 0.8)" title="Editar Restaurante" fontColor="#fff" iconName="create"
+          iconSize="15px" iconColor="#fff" (click)="editRestaurant()"></app-button>
+
+        <app-button bgColor="rgba(28, 25, 21, 0.7)" title="Volver" fontColor="#fff" iconName="arrow-round-back"
+          iconSize="15px" iconColor="#fff" (click)="navCtrl.goBack()"></app-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Dános tu opinión</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div padding>
+        <form [formGroup]="commentForm" (ngSubmit)="publishComment()" novalidate>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked" class="label-title">Puntuación ({{commentForm.value.rating}})</ion-label>
+              <ion-range formControlName="rating" min="0" max="5" step="1" snaps="true" color="secondary"></ion-range>
+            </ion-item>
+            <ion-item>
+              <ion-label position="stacked" class="label-title">Comentario (*)</ion-label>
+              <ion-textarea placeholder="Comentario" formControlName="comment" rows="5" required></ion-textarea>
+            </ion-item>
+          </ion-list>
+          <app-button type="submit" [disabled]="commentForm.invalid" bgColor="rgba(255, 38, 74, 0.8)" title="Publicar opinión"
+            fontColor="#fff" iconName="chatbubbles" iconSize="15px" iconColor="#fff"></app-button>
+        </form>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  
+  <app-empty text="Sé el primero en opinar" *ngIf="comments.length == 0"></app-empty>
+
+  <ion-card *ngIf="comments.length !== 0">
+    <ion-card-header>
+      <ion-card-title>Opiniones</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="comments" padding *ngFor="let comment of comments | reverse">
+        <ion-label>
+          <ion-skeleton-text *ngIf="!comment.comment"></ion-skeleton-text>
+          {{comment.comment}}
+        </ion-label>
+        <div class="separator"></div>
+        <ion-skeleton-text *ngIf="!comment.rating"></ion-skeleton-text>
+        <app-rating [numbers]="comment.rating"></app-rating>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

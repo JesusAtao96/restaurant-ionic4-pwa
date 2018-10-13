@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Restaurant App</ion-title>
+    <ion-buttons slot="start">
+      <ion-button href="/start" routerDirection="back">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Regístrate</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="registerForm" (ngSubmit)="register()" novalidate>
+        <ion-list inset class="no-border">
+          <ion-item>
+            <ion-label position="stacked">Nombre</ion-label>
+            <ion-input placeholder="Introduce tu nombre" formControlName="name" required autofocus="true" clearInput></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Email</ion-label>
+            <ion-input type="email" inputmode="email" placeholder="Introduce tu email" formControlName="email" required clearInput></ion-input>
+          </ion-item>
+          <ion-item *ngIf="registerForm.get('email').hasError('email')">
+            <p color="danger" ion-text>Email incorrecto</p>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Password</ion-label>
+            <ion-input type="password" placeholder="Introduce tu password" formControlName="password" maxlength="18" required clearInput></ion-input>
+          </ion-item>
+          <ion-item *ngIf="registerForm.get('password').hasError('pattern')">
+            <p color="danger" ion-text>Password muy debil</p>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked">Confirmar Password</ion-label>
+            <ion-input type="password" placeholder="Repite el password" formControlName="confirmPassword" maxlength="18" required clearInput></ion-input>
+          </ion-item>
+          <ion-item *ngIf="registerForm['controls'].confirmPassword.errors?.MatchPassword">
+            <p color="danger" ion-text>Los passwords no coinciden</p>
+          </ion-item>
+        </ion-list>
+        <app-button type="submit" [disabled]="registerForm.invalid" bgColor="rgba(200, 200, 50, 0.7)" title="Registrarme" fontColor="#fff" iconName="person-add"
+          iconSize="15px" iconColor="#fff"></app-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

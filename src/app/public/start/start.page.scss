@@ -1,0 +1,16 @@
+// Fullscreen centered image background
+.center-view {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ion-toolbar {
+    --background: rgb(244, 81, 30);
+    --color: white;
+}
+
+ion-content {
+    --background: url('../../../assets/img/login-bg.png');
+}

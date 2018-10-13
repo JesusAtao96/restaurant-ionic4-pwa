@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="danger">
+    <ion-title>Editar restaurante</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="modalDismiss(false)">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Editar restaurante</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="restaurantForm" (ngSubmit)="editRestaurant()" novalidate>
+        <ion-list>
+          <ion-item>
+            <ion-label position="stacked" class="label-title">Nombre (*)</ion-label>
+            <ion-input placeholder="Nombre" formControlName="name" required autofocus="true" clearInput></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked" class="label-title">Dirección (*)</ion-label>
+            <ion-input placeholder="Dirección" formControlName="address" required clearInput></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked" class="label-title">Capacidad ({{restaurantForm.value.capacity}})</ion-label>
+            <ion-range formControlName="capacity" min="0" max="100" step="1" snaps="true" color="secondary"></ion-range>
+            <ion-label position="stacked" class="label-subtitle">Capacidad en personas</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-label position="stacked" class="label-title">Descripción (*)</ion-label>
+            <ion-textarea placeholder="Descripción" formControlName="description" rows="5" required></ion-textarea>
+          </ion-item>
+        </ion-list>
+        <app-button type="submit" [disabled]="restaurantForm.invalid" bgColor="rgba(255, 38, 74, 0.9)" title="Dar de alta"
+          fontColor="#fff" iconName="add" iconSize="15px" iconColor="#fff"></app-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
