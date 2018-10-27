@@ -9,6 +9,7 @@ import { RestaurantService, RestaurantI, CommentI } from '../../shared';
 })
 export class ReviewsPage implements OnInit {
 
+  isLoading: boolean = false;
   restaurants: RestaurantI[] = [];
   restaurantSelected: String;
   comments: CommentI[] = [];
@@ -32,12 +33,15 @@ export class ReviewsPage implements OnInit {
   }
 
   onChangeRestaurant() {
+    this.isLoading = true;
     this.restaurantS.getCommentsXId(this.restaurantSelected).subscribe(
       (response) => {
+        this.isLoading = false;
         console.log('getCommentsXId', this.restaurantSelected, this.comments);
         this.comments = response.comments;
       },
       (err) => {
+        this.isLoading = false;
         console.log(err)
       }
     );

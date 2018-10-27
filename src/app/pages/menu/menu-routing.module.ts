@@ -11,7 +11,6 @@ const routes: Routes = [
           { path: 'list-restaurants', loadChildren: '../restaurants/restaurants/restaurants.module#RestaurantsPageModule' },
           { path: 'add-restaurant', loadChildren: '../restaurants/add-restaurant/add-restaurant.module#AddRestaurantPageModule' },
           { path: 'detail-restaurant/:id', loadChildren: '../restaurants/detail-restaurant/detail-restaurant.module#DetailRestaurantPageModule' },
-          { path: 'reviews-restaurant/:id', loadChildren: '../restaurants/reviews-restaurant/reviews-restaurant.module#ReviewsRestaurantPageModule' },
           { path: 'reviews', loadChildren: '../reviews/reviews.module#ReviewsPageModule' },
           { path: 'profile', loadChildren: '../profile/profile.module#ProfilePageModule' }
         ]

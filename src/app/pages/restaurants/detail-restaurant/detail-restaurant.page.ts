@@ -16,14 +16,8 @@ import { EditRestaurantPage } from './../edit-restaurant/edit-restaurant.page';
 export class DetailRestaurantPage implements OnInit {
   
   paramsId: String;
-  restaurant: RestaurantI = {
-    _id: '',
-    name: '',
-    description: '',
-    address: '',
-    capacity: null
-  };
-  ratingTotal: any = 0;
+  restaurant = <RestaurantI>{};
+  ratingTotal: any = null;
   commentForm: FormGroup;
   comments: CommentI[] = [];
 
@@ -77,6 +71,7 @@ export class DetailRestaurantPage implements OnInit {
       (response) => {
         console.log(response, 'xD');
         if(response.data) {
+          this.restaurant = <RestaurantI>{};
           this.getRestaurantDetail(this.paramsId);
         }
       }
@@ -91,12 +86,17 @@ export class DetailRestaurantPage implements OnInit {
       (response) => {
         this.comments = response.comments;
         console.log('getCommentsXId', this.comments);
-
-        this.comments.forEach(comment => {
-          this.ratingTotal = this.ratingTotal + comment.rating;
-        });
-
-        this.ratingTotal = Math.round(this.ratingTotal / this.comments.length);
+        
+        if(this.comments.length !== 0) {
+          this.comments.forEach(comment => {
+            this.ratingTotal = this.ratingTotal + comment.rating;
+          });
+  
+          this.ratingTotal = Math.round(this.ratingTotal / this.comments.length);
+        } else {
+          this.ratingTotal = 0;
+        }
+        
       },
       (error) => {
         console.log(error);

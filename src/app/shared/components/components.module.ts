@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { AppButtonComponent } from './app-button/app-button.component';
 import { RatingComponent } from './rating/rating.component';
 import { EmptyComponent } from './empty/empty.component';
+import { PreloaderComponent } from './preloader/preloader.component';
 
 @NgModule({
     imports: [
@@ -14,12 +15,14 @@ import { EmptyComponent } from './empty/empty.component';
     exports: [
         AppButtonComponent,
         RatingComponent,
-        EmptyComponent
+        EmptyComponent,
+        PreloaderComponent
     ],
       declarations: [
         AppButtonComponent,
         RatingComponent,
-        EmptyComponent
+        EmptyComponent,
+        PreloaderComponent
     ]
 })
 

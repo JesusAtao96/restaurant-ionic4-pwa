@@ -8,6 +8,8 @@
 </ion-header>
 
 <ion-content>
+  <app-preloader *ngIf="isLoading"></app-preloader>
+
   <ion-item lines="none">
     <ion-label>Selecciona un restaurante</ion-label>
     <ion-select ok-text="Aceptar" cancel-text="Cancelar" [(ngModel)]="restaurantSelected" (ionChange)="onChangeRestaurant()">

@@ -10,7 +10,7 @@ export class AppButtonComponent implements OnInit {
   @Input() bgColor: string
   @Input() title: string;
   @Input() type: string = 'button';
-  @Input() disabled: Boolean = false;;
+  @Input() disabled: Boolean = false;
   @Input() fontColor: string;
   @Input() iconName: string;
   @Input() iconSize: string;

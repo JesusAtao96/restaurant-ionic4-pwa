@@ -24,8 +24,8 @@
       
       <div class="img-content"></div>
       <div padding>
-        <ion-skeleton-text *ngIf="!ratingTotal"></ion-skeleton-text>
-        <app-rating *ngIf="ratingTotal" [numbers]="ratingTotal"></app-rating>
+        <ion-skeleton-text *ngIf="ratingTotal == null"></ion-skeleton-text>
+        <app-rating *ngIf="ratingTotal !== null" [numbers]="ratingTotal"></app-rating>
 
         <ion-label>
           <ion-skeleton-text *ngIf="!restaurant.description"></ion-skeleton-text>

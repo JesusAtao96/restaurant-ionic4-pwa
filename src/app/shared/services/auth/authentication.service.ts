@@ -52,7 +52,7 @@ export class AuthenticationService {
   }
 
   logout() {
-    return this.storage.remove(TOKEN_KEY).then(() => {
+    this.storage.clear().then(() => {
       this.authenticationState.next(false);
     });
   }
@@ -62,7 +62,7 @@ export class AuthenticationService {
   }
 
   checkToken() {
-    return this.storage.get(TOKEN_KEY).then(res => {
+    this.storage.get(TOKEN_KEY).then(res => {
       this.headers = { headers: new HttpHeaders().set('token', res) };
       if(res) {
         this.authenticationState.next(true);

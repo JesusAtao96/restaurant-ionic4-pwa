@@ -6,15 +6,14 @@ ion-searchbar {
     padding: 0px;
 }
 
-.list-empty {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+app-empty {
+    top: 50px;
+    bottom: 50px;
 }
 
 ion-list {
     background: rgba(255, 255, 255, .4);
+    margin: 0px;
 }
 
 ion-item {

@@ -13,6 +13,7 @@ export class EditRestaurantPage implements OnInit {
 
   @Input() value;
   public restaurantForm: FormGroup;
+  isLoading: boolean = false;
 
   constructor(public modalController: ModalController, private restaurantS: RestaurantService, public fb: FormBuilder) {
     this.restaurantForm = this.fb.group({
@@ -24,14 +25,16 @@ export class EditRestaurantPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.value)
+    this.isLoading = true;
     this.restaurantS.getRestaurantXId(this.value).subscribe(
       (response) => {
+        this.isLoading = false;
         //console.log('getRestaurantXId', response);
         let { name, description, address, capacity } = response.restaurant;
         this.restaurantForm.setValue({ name, description, address, capacity });
       },
       (err) => {
+        this.isLoading = false;
         console.log('Error: ', err);
       }
     );
@@ -42,12 +45,14 @@ export class EditRestaurantPage implements OnInit {
   }
 
   editRestaurant() {
-    console.log(this.restaurantForm.value);
+    this.isLoading = true;
     this.restaurantS.updateRestaurant(this.value, this.restaurantForm.value).subscribe(
       (response) => {
+        this.isLoading = false;
         this.modalDismiss(true);
       },
       (err) => {
+        this.isLoading = false;
         console.log('Error: ', err);
       }
     );

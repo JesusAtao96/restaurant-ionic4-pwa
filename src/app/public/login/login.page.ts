@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../shared';
-import { LoadingController, ToastController  } from '@ionic/angular';
+import { ToastController  } from '@ionic/angular';
 
 import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
@@ -12,11 +12,10 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginPage implements OnInit {
   
   public loginForm: FormGroup;
-  public loading: any;
+  isLoading: boolean = false;
 
   constructor(
     private authService: AuthenticationService,
-    public loadingController: LoadingController,
     public toastController: ToastController,
     public fb: FormBuilder
   ) {
@@ -37,24 +36,16 @@ export class LoginPage implements OnInit {
     toast.present();
   }
 
-  async presentLoading() {
-    this.loading = await this.loadingController.create({
-      message: 'Ingresando...',
-      duration: 2000
-    });
-    return await this.loading.present();
-  }
-
   login() {
-    this.presentLoading();
+    this.isLoading = true;
     this.authService.login(this.loginForm.value).subscribe(
       (response) => {
-        this.loading.dismiss();
+        this.isLoading = false;
         console.log('response', response);
         this.authService.setToken(response);
       },
       (error) => {
-        this.loading.dismiss();
+        this.isLoading = false;
         console.log('Error', error);
         let { error: { err: { message } } } = error;
         this.presentToast(message);

@@ -12,6 +12,7 @@ import { RestaurantService } from '../../../shared';
 })
 export class AddRestaurantPage implements OnInit {
 
+  isLoading: boolean = false;
   public restaurantForm: FormGroup;
 
   constructor(
@@ -34,13 +35,16 @@ export class AddRestaurantPage implements OnInit {
 
   registerRestaurant() {
     console.log(this.restaurantForm.value);
+    this.isLoading = true;
     this.restaurantS.createRestaurant(this.restaurantForm.value).subscribe(
       (response) => {
+        this.isLoading = false;
         console.log(response);
         this.navCtrl.goBack();
         //this.navCtrl.navigateBack('/main/list-restaurants');
       },
       (err) => {
+        this.isLoading = false;
         console.log(err)
       }
     );

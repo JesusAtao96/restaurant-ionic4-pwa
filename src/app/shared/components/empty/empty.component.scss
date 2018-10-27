@@ -1,3 +1,14 @@
+:host {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 ion-card {
     --background: rgba(10, 255, 10, 0.8);
     --color: white;
