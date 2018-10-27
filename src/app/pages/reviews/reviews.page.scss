@@ -20,8 +20,14 @@ ion-card-content {
 }
 
 app-empty {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     top: 65px;
     bottom: 65px;
+    left: 0;
+    right: 0;
 }
 
 .item-native {

@@ -7,8 +7,14 @@ ion-searchbar {
 }
 
 app-empty {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     top: 50px;
     bottom: 50px;
+    left: 0;
+    right: 0;
 }
 
 ion-list {
