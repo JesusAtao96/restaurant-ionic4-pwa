@@ -14,7 +14,7 @@ const TOKEN_KEY = 'auth-token';
 })
 export class AuthenticationService {
   authenticationState = new BehaviorSubject(null);
-  headers;
+  headers: any;
 
   constructor(private storage: Storage, private plt: Platform, private global: AppGlobals, private http: HttpClient) {
     this.plt.ready().then(() => {
@@ -22,8 +22,8 @@ export class AuthenticationService {
     });
   }
 
-  setToken(data) {
-    console.log('setToken', data.token)
+  async setToken(data: any) {
+    console.log('setToken', data.token);
     return this.storage.set(TOKEN_KEY, data.token).then(res => {
       localStorage.setItem('name', data.user.name);
       this.headers = { headers: new HttpHeaders().set('token', data.token) };
@@ -64,7 +64,7 @@ export class AuthenticationService {
   checkToken() {
     this.storage.get(TOKEN_KEY).then(res => {
       this.headers = { headers: new HttpHeaders().set('token', res) };
-      if(res) {
+      if (res) {
         this.authenticationState.next(true);
       } else {
         this.authenticationState.next(false);

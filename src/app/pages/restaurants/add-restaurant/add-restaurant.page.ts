@@ -40,7 +40,7 @@ export class AddRestaurantPage implements OnInit {
       (response) => {
         this.isLoading = false;
         console.log(response);
-        this.navCtrl.goBack();
+        this.navCtrl.back();
         //this.navCtrl.navigateBack('/main/list-restaurants');
       },
       (err) => {

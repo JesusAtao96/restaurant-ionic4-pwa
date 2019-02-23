@@ -13,8 +13,7 @@
   <div class="res-content">
     <ion-searchbar placeholder="Buscar algún restaurante" [(ngModel)]="search" animated *ngIf="restaurants.length !== 0"></ion-searchbar>
     <ion-list *ngIf="restaurants.length !== 0">
-      <ion-item *ngFor="let restaurant of restaurants | reverse | filter:search" href="/main/detail-restaurant/{{restaurant._id}}"
-        routerDirection="forward" #filtered>
+      <ion-item *ngFor="let restaurant of restaurants | reverse | filter:search" (click)="goToDetail(restaurant._id)" #filtered>
         <ion-thumbnail slot="start">
           <ion-img src="assets/img/restaurant.png"></ion-img>
         </ion-thumbnail>

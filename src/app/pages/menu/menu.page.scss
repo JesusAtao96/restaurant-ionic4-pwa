@@ -3,6 +3,16 @@ ion-content {
     --background: #c8264a;
 }
 
+ion-list {
+    padding: 0px;
+}
+
 ion-item {
     --background: #c8264a;
+    --color: white;
+}
+
+ion-icon {
+    --color: white;
+    color: white;
 }

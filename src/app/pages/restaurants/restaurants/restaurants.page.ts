@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChildren, QueryList  } from '@angular/core';
+import { Component, OnInit, AfterViewInit, ViewChildren, QueryList  } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { RestaurantService, RestaurantI } from '../../../shared';
 
@@ -7,19 +7,19 @@ import { RestaurantService, RestaurantI } from '../../../shared';
   templateUrl: './restaurants.page.html',
   styleUrls: ['./restaurants.page.scss'],
 })
-export class RestaurantsPage implements OnInit {
-  
-  @ViewChildren('filtered') filteredItems: QueryList<any>; //ItemComponent
+export class RestaurantsPage implements OnInit, AfterViewInit {
+
+  @ViewChildren('filtered') filteredItems: QueryList<any>; // ItemComponent
   restaurantsLength = 0;
   search: string;
-  isLoading: boolean = false;
+  isLoading = false;
   restaurants: RestaurantI[] = [];
 
   constructor(public navCtrl: NavController, private restaurantS: RestaurantService) {
-    
+
   }
 
-  ionViewDidEnter(){
+  ionViewDidEnter() {
     this.getRestaurants();
   }
 
@@ -40,13 +40,18 @@ export class RestaurantsPage implements OnInit {
       (response) => {
         this.isLoading = false;
         this.restaurants = response.restaurants;
-        console.log('this.restaurants', this.restaurants)
+        console.log('this.restaurants', this.restaurants);
       },
       (err) => {
         this.isLoading = false;
-        console.log(err)
+        console.log(err);
       }
     );
+  }
+
+  goToDetail(restaurantId: string) {
+    console.log('goToDetail', restaurantId); // /main/detail-restaurant/{{restaurant._id}}
+    this.navCtrl.navigateForward(`main/detail-restaurant/${restaurantId}`);
   }
 
   addRestaurant() {

@@ -20,10 +20,19 @@ app-empty {
 ion-list {
     background: rgba(255, 255, 255, .4);
     margin: 0px;
+    padding: 0px;
 }
 
+/*.item-native {
+    background: rgba(255, 255, 255, .1);
+    color: white;
+}*/
+
 ion-item {
+    cursor: pointer;
+    --background: rgba(255, 255, 255, .1);
     --background-activated: rgba(255, 255, 255, .1);
+    --color: white;
 }
 
 ion-thumbnail {

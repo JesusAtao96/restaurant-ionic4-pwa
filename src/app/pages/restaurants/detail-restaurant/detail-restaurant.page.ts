@@ -14,7 +14,7 @@ import { EditRestaurantPage } from './../edit-restaurant/edit-restaurant.page';
   styleUrls: ['./detail-restaurant.page.scss'],
 })
 export class DetailRestaurantPage implements OnInit {
-  
+
   paramsId: String;
   restaurant = <RestaurantI>{};
   ratingTotal: any = null;
@@ -70,7 +70,7 @@ export class DetailRestaurantPage implements OnInit {
     modal.onDidDismiss().then(
       (response) => {
         console.log(response, 'xD');
-        if(response.data) {
+        if (response.data) {
           this.restaurant = <RestaurantI>{};
           this.getRestaurantDetail(this.paramsId);
         }
@@ -86,17 +86,15 @@ export class DetailRestaurantPage implements OnInit {
       (response) => {
         this.comments = response.comments;
         console.log('getCommentsXId', this.comments);
-        
-        if(this.comments.length !== 0) {
+
+        if (this.comments.length !== 0) {
           this.comments.forEach(comment => {
             this.ratingTotal = this.ratingTotal + comment.rating;
           });
-  
           this.ratingTotal = Math.round(this.ratingTotal / this.comments.length);
         } else {
           this.ratingTotal = 0;
         }
-        
       },
       (error) => {
         console.log(error);
@@ -104,9 +102,9 @@ export class DetailRestaurantPage implements OnInit {
     );
   }
 
-  
+
   publishComment() {
-    //this.commentForm.setValue({restaurant: this.paramsId});
+    // this.commentForm.setValue({restaurant: this.paramsId});
     this.commentForm.value.restaurant = this.paramsId;
     console.log(this.commentForm.value);
     this.restaurantS.createComment(this.commentForm.value).subscribe(
@@ -138,8 +136,8 @@ export class DetailRestaurantPage implements OnInit {
             console.log('Confirm Okay');
             this.restaurantS.deleteRestaurant(this.paramsId).subscribe(
               (response) => {
-                this.navCtrl.navigateBack('/main/list-restaurants', true);
-                //this.navCtrl.goBack();
+                this.navCtrl.navigateBack('/main/list-restaurants');
+                // this.navCtrl.goBack();
               },
               (error) => {
                 console.log(error);
